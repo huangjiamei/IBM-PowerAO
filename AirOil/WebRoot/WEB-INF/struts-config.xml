@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans>
+  	<form-bean name = "LoginActionForm" type = "com.struts.LoginActionForm"/>
+  	<form-bean name="ShowselfActionForm" type="com.struts.ShowselfActionForm"/>
+  	<form-bean name="SaveselfActionForm" type="com.struts.SaveselfActionForm"/>
+  	<form-bean name="ShowlistActionForm" type="com.struts.ShowlistActionForm"/>
+  	<form-bean name="AdduserActionForm" type="com.struts.AdduserActionForm"/>
+  	<form-bean name="DeleteActionForm" type="com.struts.DeleteActionForm"/>
+  	<form-bean name="ShowpwdeditActionForm" type="com.struts.ShowpwdeditActionForm"/>
+  	<form-bean name="EditpwdActionForm" type="com.struts.EditpwdActionForm"/>
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings>
+  	<action attribute = "LoginActionForm" name = "LoginActionForm" path = "/LoginAction" scope = "request">
+  		<forward name = "self" path = "/login.jsp"></forward>
+  		<forward name = "success" path = "/f3userinfor.jsp"></forward>
+  		<forward name = "error" path = "/login.jsp"></forward>
+  	</action>
+  	
+  	<action name="ShowselfActionForm" attribute="ShowselfActionForm" path="/ShowselfAction" scope="request">
+		<forward name="editself" path="/f3userinforedit.jsp"/>
+	</action>
+	
+	<action name="SaveselfActionForm" attribute="SaveselfActionForm" path="/SaveselfAction" scope="request">
+		<forward name="saveself" path="/f3userinfor.jsp"/>
+	</action>
+	
+	<action name="ShowlistActionForm" attribute="ShowlistActionForm" path="/ShowlistAction" scope="request">
+		<forward name="showall" path="/f3usermanage.jsp"/>
+	</action>
+	
+	<action name="AdduserActionForm" attribute="AdduserActionForm" path="/AdduserAction" scope="request">
+		<forward name="adduser" path="/f3usermanage.jsp"/>
+		<forward name="addfail" path="/f3useradd.jsp"/>
+	</action>
+	
+	<action name="DeleteActionForm" attribute="DeleteActionForm" path="/DeleteAction" scope="request">
+		<forward name="deleteuser" path="/f3usermanage.jsp"/>
+	</action>
+	
+	<action name="ShowpwdeditActionForm" attribute="ShowpwdeditActionForm" path="/ShowpwdeditAction" scope="request">
+		<forward name="showeditpwd" path="/f3editpassword.jsp"/>
+	</action>
+	
+	<action name="EditpwdActionForm" attribute="EditpwdActionForm" path="/EditpwdAction" scope="request">
+		<forward name="savepwd" path="/f3editpassword.jsp"/>
+		<forward name="error" path="/index.jsp"/>
+	</action>
+  </action-mappings>
+  
+  <controller
+  		processorClass = "org.springframework.web.struts.DelegatingRequestProcessor"></controller>
+  <message-resources parameter="com.yourcompany.struts.ApplicationResources" />
+  <plug-in className = "org.springframework.web.struts.ContextLoaderPlugIn">
+  	<set-property property = "contextConfigLocation" value = "/WEB-INF/applicationContext.xml"/>
+  </plug-in>
+</struts-config>
+

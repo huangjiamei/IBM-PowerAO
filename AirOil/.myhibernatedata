@@ -1,0 +1,20 @@
+#MyEclipse Hibernate Properties
+#Sat Sep 26 17:17:25 CST 2015
+genBasicCompId=false
+sessionFactoryName=
+profile=
+daoSFId=sessionFactory
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=WebRoot/WEB-INF/applicationContext.xml
+useJavaTypes=true
+keyGenerator=increment
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=
+configFile=/AirOil/src/hibernate.cfg.xml
+createConfigFile=true

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/LoginAction.do" location="50,50" dimension="163,84" />
+  <StrutsActivity path="/ShowselfAction.do" location="350,50" dimension="190,84" />
+  <StrutsActivity path="/SaveselfAction.do" location="650,50" dimension="183,84" />
+  <StrutsActivity path="/ShowlistAction.do" location="950,50" dimension="186,84" />
+  <StrutsActivity path="/AdduserAction.do" location="50,250" dimension="188,84" />
+  <StrutsActivity path="/DeleteAction.do" location="350,250" dimension="171,84" />
+  <StrutsActivity path="/ShowpwdeditAction.do" location="650,250" dimension="233,84" />
+  <StrutsActivity path="/EditpwdAction.do" location="950,250" dimension="187,84" />
+  <StrutsActivity path="/f3useradd.jsp" location="350,450" dimension="116,53" />
+  <StrutsTransition id="addfail;6,null,/f3useradd.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="177,476" />
+      <AbsolutePoint location="350,476" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

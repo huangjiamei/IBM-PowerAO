@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+<bean id = "dataSource"
+	  class = "org.apache.commons.dbcp.BasicDataSource">
+	  <property name = "driverClassName"
+	  		value = "com.mysql.jdbc.Driver">
+	  </property>
+	  <property name = "url"
+	  		value = "jdbc:mysql://localhost:3306/airoil">
+	  </property>
+	  <property name = "username" value = "root"></property>
+	  <property name = "password" value = "079322"></property> 
+</bean>
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+
+		<property name = "dataSource">
+			<ref bean = "dataSource"/>
+		</property>
+		<property name = "hibernateProperties">
+			<props>
+				<prop key = "hibernate.dialect">
+				org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name = "mappingResources">
+			<list>
+				<value>com/pojo/Administrator.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<bean id="administratorDAO" class="com.dao.AdministratorDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<!-- 声明一个hibernate3的事务管理器供代理类自动管理事务用 -->
+	<bean id = "transactionManager"
+		class = "org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name = "sessionFactory">
+			<ref local = "sessionFactory"/>
+		</property>
+	</bean>
+	
+	<!-- userinfo业务处理类 -->
+	<bean id = "administratorService" 
+		class = "com.service.AdministratorService"
+		abstract = "false"
+		lazy-init = "default" 
+		autowire = "default"
+		dependency-check = "default">
+		<property name ="administratorDAO">
+			<ref bean = "administratorDAO"/>
+		</property>
+	</bean>
+	
+	
+	<bean name = "/LoginAction" class = "com.struts.LoginAction" abstract = "false" lazy-init = "default" autowire = "default" dependency-check = "default">
+		<property name = "administratorService">
+			<ref bean = "administratorService"/>
+		</property>
+	</bean>
+	
+	<bean class="com.struts.ShowselfAction" name="/ShowselfAction" dependency-check="default" abstract="false" lazy-init="default" autowire="default">
+		<property name="administratorService">
+			<ref bean="administratorService"/>
+		</property>
+	</bean>
+	
+	<bean class="com.struts.SaveselfAction" name="/SaveselfAction" dependency-check="default" abstract="false" lazy-init="default" autowire="default">
+		<property name="administratorService">
+			<ref bean="administratorService"/>
+		</property>
+	</bean>
+	
+	<bean class="com.struts.ShowlistAction" name="/ShowlistAction" dependency-check="default" abstract="false" lazy-init="default" autowire="default">
+		<property name="administratorService">
+			<ref bean="administratorService"/>
+		</property>
+	</bean>
+	
+	<bean class="com.struts.AdduserAction" name="/AdduserAction" dependency-check="default" abstract="false" lazy-init="default" autowire="default">
+		<property name="administratorService">
+			<ref bean="administratorService"/>
+		</property>
+	</bean>
+	
+	<bean class="com.struts.DeleteAction" name="/DeleteAction" dependency-check="default" abstract="false" lazy-init="default" autowire="default">
+		<property name="administratorService">
+			<ref bean="administratorService"/>
+		</property>
+	</bean>
+	
+	<bean class="com.struts.ShowpwdeditAction" name="/ShowpwdeditAction" dependency-check="default" abstract="false" lazy-init="default" autowire="default">
+		<property name="administratorService">
+			<ref bean="administratorService"/>
+		</property>
+	</bean>
+	
+	<bean class="com.struts.EditpwdAction" name="/EditpwdAction" dependency-check="default" abstract="false" lazy-init="default" autowire="default">
+		<property name="administratorService">
+			<ref bean="administratorService"/>
+		</property>
+	</bean>
+
+	</beans>
